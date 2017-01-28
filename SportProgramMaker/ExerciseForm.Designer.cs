@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseForm));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.exerciseTextBox = new System.Windows.Forms.TextBox();
-            this.exerciseAddButton = new System.Windows.Forms.Button();
             this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.categoryAddButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -39,51 +36,28 @@
             this.button4 = new System.Windows.Forms.Button();
             this.catExerciseListView = new System.Windows.Forms.ListView();
             this.ExerciseNamecolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
             this.saveButton = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.exerciesGroupBox = new System.Windows.Forms.GroupBox();
+            this.exerciseTextBox = new System.Windows.Forms.TextBox();
+            this.categoriesListBox = new System.Windows.Forms.ListBox();
+            this.exerciseAddButton = new System.Windows.Forms.Button();
+            this.categoriesGroupBox.SuspendLayout();
+            this.exerciesGroupBox.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.saveButton);
-            this.panel1.Controls.Add(this.exerciseTextBox);
-            this.panel1.Controls.Add(this.exerciseAddButton);
-            this.panel1.Controls.Add(this.categoryTextBox);
-            this.panel1.Controls.Add(this.categoryAddButton);
-            this.panel1.Location = new System.Drawing.Point(175, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 355);
-            this.panel1.TabIndex = 1;
-            // 
-            // exerciseTextBox
-            // 
-            this.exerciseTextBox.Location = new System.Drawing.Point(214, 18);
-            this.exerciseTextBox.Name = "exerciseTextBox";
-            this.exerciseTextBox.Size = new System.Drawing.Size(100, 20);
-            this.exerciseTextBox.TabIndex = 3;
-            this.exerciseTextBox.TextChanged += new System.EventHandler(this.exerciseTextBox_TextChanged);
-            // 
-            // exerciseAddButton
-            // 
-            this.exerciseAddButton.Enabled = false;
-            this.exerciseAddButton.Location = new System.Drawing.Point(214, 44);
-            this.exerciseAddButton.Name = "exerciseAddButton";
-            this.exerciseAddButton.Size = new System.Drawing.Size(100, 23);
-            this.exerciseAddButton.TabIndex = 2;
-            this.exerciseAddButton.Text = "Add Exercise";
-            this.exerciseAddButton.UseVisualStyleBackColor = true;
-            this.exerciseAddButton.Click += new System.EventHandler(this.exerciseAddButton_Click);
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(13, 18);
+            this.categoryTextBox.Location = new System.Drawing.Point(6, 19);
             this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(100, 20);
+            this.categoryTextBox.Size = new System.Drawing.Size(188, 20);
             this.categoryTextBox.TabIndex = 1;
+            this.categoryTextBox.TextChanged += new System.EventHandler(this.categoryTextBox_TextChanged);
             // 
             // categoryAddButton
             // 
-            this.categoryAddButton.Location = new System.Drawing.Point(13, 44);
+            this.categoryAddButton.Enabled = false;
+            this.categoryAddButton.Location = new System.Drawing.Point(94, 45);
             this.categoryAddButton.Name = "categoryAddButton";
             this.categoryAddButton.Size = new System.Drawing.Size(100, 23);
             this.categoryAddButton.TabIndex = 0;
@@ -133,26 +107,76 @@
             // 
             this.ExerciseNamecolumnHeader.Text = "Exercise Name";
             // 
+            // categoriesGroupBox
+            // 
+            this.categoriesGroupBox.Controls.Add(this.categoryTextBox);
+            this.categoriesGroupBox.Controls.Add(this.categoryAddButton);
+            this.categoriesGroupBox.Location = new System.Drawing.Point(175, 12);
+            this.categoriesGroupBox.Name = "categoriesGroupBox";
+            this.categoriesGroupBox.Size = new System.Drawing.Size(428, 79);
+            this.categoriesGroupBox.TabIndex = 7;
+            this.categoriesGroupBox.TabStop = false;
+            this.categoriesGroupBox.Text = "Categories";
+            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(322, 329);
+            this.saveButton.Location = new System.Drawing.Point(528, 344);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 4;
+            this.saveButton.TabIndex = 8;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // exerciesGroupBox
+            // 
+            this.exerciesGroupBox.Controls.Add(this.exerciseAddButton);
+            this.exerciesGroupBox.Controls.Add(this.categoriesListBox);
+            this.exerciesGroupBox.Controls.Add(this.exerciseTextBox);
+            this.exerciesGroupBox.Location = new System.Drawing.Point(175, 97);
+            this.exerciesGroupBox.Name = "exerciesGroupBox";
+            this.exerciesGroupBox.Size = new System.Drawing.Size(427, 166);
+            this.exerciesGroupBox.TabIndex = 9;
+            this.exerciesGroupBox.TabStop = false;
+            this.exerciesGroupBox.Text = "Exercises";
+            // 
+            // exerciseTextBox
+            // 
+            this.exerciseTextBox.Location = new System.Drawing.Point(6, 19);
+            this.exerciseTextBox.Name = "exerciseTextBox";
+            this.exerciseTextBox.Size = new System.Drawing.Size(188, 20);
+            this.exerciseTextBox.TabIndex = 4;
+            // 
+            // categoriesListBox
+            // 
+            this.categoriesListBox.FormattingEnabled = true;
+            this.categoriesListBox.Location = new System.Drawing.Point(6, 45);
+            this.categoriesListBox.Name = "categoriesListBox";
+            this.categoriesListBox.Size = new System.Drawing.Size(188, 82);
+            this.categoriesListBox.TabIndex = 6;
+            // 
+            // exerciseAddButton
+            // 
+            this.exerciseAddButton.Enabled = false;
+            this.exerciseAddButton.Location = new System.Drawing.Point(94, 133);
+            this.exerciseAddButton.Name = "exerciseAddButton";
+            this.exerciseAddButton.Size = new System.Drawing.Size(100, 23);
+            this.exerciseAddButton.TabIndex = 7;
+            this.exerciseAddButton.Text = "Add Exercise";
+            this.exerciseAddButton.UseVisualStyleBackColor = true;
             // 
             // ExerciseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 378);
+            this.ClientSize = new System.Drawing.Size(611, 385);
+            this.Controls.Add(this.exerciesGroupBox);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.categoriesGroupBox);
             this.Controls.Add(this.catExerciseListView);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -160,23 +184,27 @@
             this.Name = "ExerciseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ExerciseForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.categoriesGroupBox.ResumeLayout(false);
+            this.categoriesGroupBox.PerformLayout();
+            this.exerciesGroupBox.ResumeLayout(false);
+            this.exerciesGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button categoryAddButton;
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox exerciseTextBox;
-        private System.Windows.Forms.Button exerciseAddButton;
         private System.Windows.Forms.ListView catExerciseListView;
         private System.Windows.Forms.ColumnHeader ExerciseNamecolumnHeader;
+        private System.Windows.Forms.GroupBox categoriesGroupBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.GroupBox exerciesGroupBox;
+        private System.Windows.Forms.Button exerciseAddButton;
+        private System.Windows.Forms.ListBox categoriesListBox;
+        private System.Windows.Forms.TextBox exerciseTextBox;
     }
 }

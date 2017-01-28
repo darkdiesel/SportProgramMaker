@@ -12,6 +12,8 @@ namespace SportProgramMaker
 {
     public partial class ExerciseForm : Form
     {
+        public const string EXERCISES_FILE_NAME = "exercises.json";
+
         public ExerciseForm()
         {
             InitializeComponent();
@@ -19,14 +21,15 @@ namespace SportProgramMaker
 
         private void categoryAddButton_Click(object sender, EventArgs e)
         {
+            //catExerciseListView.Items.Add(new ListViewItem(new string[] {"Programming Windows"}));
+            //catExerciseListView.Items[0].Group = catExerciseListView.Groups[0];
 
-            //exerciseTextBox.Text = catExerciseListView.Groups;
+            catExerciseListView.Groups.Add(new ListViewGroup(categoryTextBox.Text, HorizontalAlignment.Left));
 
-            catExerciseListView.Items.Add(new ListViewItem(new string[] {"Programming Windows"}));
-            catExerciseListView.Groups.Add(new ListViewGroup("List item text", HorizontalAlignment.Left));
-            
+            categoryTextBox.Text = string.Empty;
+            categoryAddButton.Enabled = false;
 
-            catExerciseListView.Items[0].Group = catExerciseListView.Groups[0];
+            updateCategriesList();
         }
 
         private void exerciseAddButton_Click(object sender, EventArgs e)
@@ -46,7 +49,26 @@ namespace SportProgramMaker
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void categoryTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.Text.Length > 0)
+            {
+                categoryAddButton.Enabled = true;
+            }
+        }
+
+        private void updateCategriesList() {
+            categoriesListBox.Items.Clear();
+
+            foreach (ListViewGroup group in catExerciseListView.Groups)
+            {
+                categoriesListBox.Items.Add(group.Header);
+            }
         }
     }
+
+    
 }
