@@ -39,8 +39,11 @@
             this.exerciseTextBox = new System.Windows.Forms.TextBox();
             this.categoriesListBox = new System.Windows.Forms.ListBox();
             this.exerciseAddButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.categoriesGroupBox.SuspendLayout();
             this.exerciesGroupBox.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoryTextBox
@@ -140,11 +143,27 @@
             this.exerciseAddButton.UseVisualStyleBackColor = true;
             this.exerciseAddButton.Click += new System.EventHandler(this.exerciseAddButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 301);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(611, 22);
+            this.statusStrip1.TabIndex = 10;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
             // ExerciseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 299);
+            this.ClientSize = new System.Drawing.Size(611, 323);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.exerciesGroupBox);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.categoriesGroupBox);
@@ -156,11 +175,15 @@
             this.Name = "ExerciseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ExerciseForm";
+            this.Shown += new System.EventHandler(this.ExerciseForm_Shown);
             this.categoriesGroupBox.ResumeLayout(false);
             this.categoriesGroupBox.PerformLayout();
             this.exerciesGroupBox.ResumeLayout(false);
             this.exerciesGroupBox.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -175,5 +198,7 @@
         private System.Windows.Forms.Button exerciseAddButton;
         private System.Windows.Forms.ListBox categoriesListBox;
         private System.Windows.Forms.TextBox exerciseTextBox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

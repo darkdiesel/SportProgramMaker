@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Collections.Generic;
 
 namespace SportProgramMaker
 {
     public partial class ExerciseForm : Form
     {
-        public const string EXERCISES_FILE_NAME = "exercises.json";
+        
 
         public ExerciseForm()
         {
@@ -44,11 +40,6 @@ namespace SportProgramMaker
         private void exerciseTextBox_TextChanged(object sender, EventArgs e)
         {
             checkExerciseToAdd();        
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void categoryTextBox_TextChanged(object sender, EventArgs e)
@@ -91,6 +82,76 @@ namespace SportProgramMaker
             else
             {
                 exerciseAddButton.Enabled = false;
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(GroupExerciseSettings[]));
+
+            var stream = File.Create(MainForm.EXERCISES_FILE_NAME);
+
+            GroupExerciseSettings[] settings = new GroupExerciseSettings[catExerciseListView.Groups.Count];
+
+            var index = 0;
+            foreach (ListViewGroup group in catExerciseListView.Groups)
+            {
+                GroupExerciseSettings setting = new GroupExerciseSettings();
+
+
+                setting.items = new List<string>();
+
+                foreach (ListViewItem item in group.Items)
+                {
+                    setting.items.Add(item.Text);
+                }
+
+                setting.name = group.Header;
+
+                settings.SetValue(setting, index);
+                index++;
+            }
+
+            ser.WriteObject(stream, settings);
+
+            stream.Close();
+        }
+
+        private void ExerciseForm_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(MainForm.EXERCISES_FILE_NAME))
+                {
+                    var stream = File.OpenRead(MainForm.EXERCISES_FILE_NAME);
+                     
+
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(GroupExerciseSettings[]));
+
+                    GroupExerciseSettings[] groups = (GroupExerciseSettings[])serializer.ReadObject(stream);
+
+                    foreach (GroupExerciseSettings group in groups)
+                    {
+                        var group_added = catExerciseListView.Groups.Add(new ListViewGroup(group.name, HorizontalAlignment.Left));
+
+                        if (group.items != null) {
+                            foreach (var item in group.items) {
+                                var exercise = catExerciseListView.Items.Add(new ListViewItem(item));
+                                catExerciseListView.Items[exercise.Index].Group = catExerciseListView.Groups[group_added];
+                            }
+                        }
+                    }
+
+                    updateCategriesList();
+
+                    stream.Close();
+                }
+                
+            }
+            catch (System.Exception ex)
+            {
+                //logger.Error("Cannot deserialize json " + filePath, ex);
+                //throw;
             }
         }
     }

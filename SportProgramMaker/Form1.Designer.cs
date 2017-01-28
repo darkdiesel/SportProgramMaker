@@ -42,7 +42,10 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exercisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.catExerciseListView = new System.Windows.Forms.ListView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.mainMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -149,19 +152,40 @@
             this.exercisesToolStripMenuItem.Text = "Exercises";
             this.exercisesToolStripMenuItem.Click += new System.EventHandler(this.exercisesToolStripMenuItem_Click);
             // 
+            // catExerciseListView
+            // 
+            this.catExerciseListView.Location = new System.Drawing.Point(431, 27);
+            this.catExerciseListView.MultiSelect = false;
+            this.catExerciseListView.Name = "catExerciseListView";
+            this.catExerciseListView.Size = new System.Drawing.Size(217, 360);
+            this.catExerciseListView.TabIndex = 2;
+            this.catExerciseListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 27);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(425, 360);
+            this.dataGridView1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 412);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.catExerciseListView);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Sport Program Maker";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,6 +206,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exercisesToolStripMenuItem;
+        private System.Windows.Forms.ListView catExerciseListView;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
