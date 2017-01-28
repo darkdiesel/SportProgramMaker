@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace SportProgramMaker
 {
-    public partial class MainForm : Form
+    public partial class AboutForm : Form
     {
-        public MainForm()
+        public AboutForm()
         {
             InitializeComponent();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutForm aboutForm = new AboutForm();
-
-            aboutForm.ShowDialog();
         }
     }
 }
