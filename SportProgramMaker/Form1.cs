@@ -23,5 +23,21 @@ namespace SportProgramMaker
 
             aboutForm.ShowDialog();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void openProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void exercisesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExerciseForm exerciseForm = new ExerciseForm();
+            exerciseForm.ShowDialog();
+        }
     }
 }
