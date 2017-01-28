@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseForm));
             this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.categoryAddButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.catExerciseListView = new System.Windows.Forms.ListView();
             this.ExerciseNamecolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
@@ -65,41 +62,16 @@
             this.categoryAddButton.UseVisualStyleBackColor = true;
             this.categoryAddButton.Click += new System.EventHandler(this.categoryAddButton_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(14, 344);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(35, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Up";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(55, 344);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(46, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Down";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(107, 344);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(63, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Remove";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // catExerciseListView
             // 
             this.catExerciseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ExerciseNamecolumnHeader});
             this.catExerciseListView.GridLines = true;
+            this.catExerciseListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.catExerciseListView.Location = new System.Drawing.Point(14, 12);
+            this.catExerciseListView.MultiSelect = false;
             this.catExerciseListView.Name = "catExerciseListView";
-            this.catExerciseListView.Size = new System.Drawing.Size(155, 326);
+            this.catExerciseListView.Size = new System.Drawing.Size(155, 251);
             this.catExerciseListView.TabIndex = 5;
             this.catExerciseListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -120,7 +92,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(528, 344);
+            this.saveButton.Location = new System.Drawing.Point(528, 269);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 8;
@@ -146,6 +118,7 @@
             this.exerciseTextBox.Name = "exerciseTextBox";
             this.exerciseTextBox.Size = new System.Drawing.Size(188, 20);
             this.exerciseTextBox.TabIndex = 4;
+            this.exerciseTextBox.TextChanged += new System.EventHandler(this.exerciseTextBox_TextChanged);
             // 
             // categoriesListBox
             // 
@@ -154,6 +127,7 @@
             this.categoriesListBox.Name = "categoriesListBox";
             this.categoriesListBox.Size = new System.Drawing.Size(188, 82);
             this.categoriesListBox.TabIndex = 6;
+            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
             // 
             // exerciseAddButton
             // 
@@ -164,19 +138,17 @@
             this.exerciseAddButton.TabIndex = 7;
             this.exerciseAddButton.Text = "Add Exercise";
             this.exerciseAddButton.UseVisualStyleBackColor = true;
+            this.exerciseAddButton.Click += new System.EventHandler(this.exerciseAddButton_Click);
             // 
             // ExerciseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 385);
+            this.ClientSize = new System.Drawing.Size(611, 299);
             this.Controls.Add(this.exerciesGroupBox);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.categoriesGroupBox);
             this.Controls.Add(this.catExerciseListView);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -195,9 +167,6 @@
         #endregion
         private System.Windows.Forms.Button categoryAddButton;
         private System.Windows.Forms.TextBox categoryTextBox;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListView catExerciseListView;
         private System.Windows.Forms.ColumnHeader ExerciseNamecolumnHeader;
         private System.Windows.Forms.GroupBox categoriesGroupBox;

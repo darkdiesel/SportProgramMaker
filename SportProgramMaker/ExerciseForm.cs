@@ -21,9 +21,6 @@ namespace SportProgramMaker
 
         private void categoryAddButton_Click(object sender, EventArgs e)
         {
-            //catExerciseListView.Items.Add(new ListViewItem(new string[] {"Programming Windows"}));
-            //catExerciseListView.Items[0].Group = catExerciseListView.Groups[0];
-
             catExerciseListView.Groups.Add(new ListViewGroup(categoryTextBox.Text, HorizontalAlignment.Left));
 
             categoryTextBox.Text = string.Empty;
@@ -34,17 +31,19 @@ namespace SportProgramMaker
 
         private void exerciseAddButton_Click(object sender, EventArgs e)
         {
-            catExerciseListView.Items.Add(new ListViewItem(exerciseTextBox.Text));
+            var exercise = catExerciseListView.Items.Add(new ListViewItem(exerciseTextBox.Text));
+
+            catExerciseListView.Items[exercise.Index].Group = catExerciseListView.Groups[categoriesListBox.SelectedIndex];
+
             exerciseTextBox.Text = string.Empty;
             exerciseAddButton.Enabled = false;
+
+            categoriesListBox.ClearSelected();
         }
 
         private void exerciseTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (this.Text.Length > 0)
-            {
-                exerciseAddButton.Enabled = true;
-            }
+            checkExerciseToAdd();        
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -54,10 +53,7 @@ namespace SportProgramMaker
 
         private void categoryTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (this.Text.Length > 0)
-            {
-                categoryAddButton.Enabled = true;
-            }
+            checkCategoriesToAdd();
         }
 
         private void updateCategriesList() {
@@ -66,6 +62,35 @@ namespace SportProgramMaker
             foreach (ListViewGroup group in catExerciseListView.Groups)
             {
                 categoriesListBox.Items.Add(group.Header);
+            }
+        }
+
+        private void categoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkExerciseToAdd();
+        }
+
+        private void checkCategoriesToAdd()
+        {
+            if (categoryTextBox.Text.Length > 0)
+            {
+                categoryAddButton.Enabled = true;
+            }
+            else
+            {
+                categoryAddButton.Enabled = false;
+            }
+        }
+
+        private void checkExerciseToAdd()
+        {
+            if (exerciseTextBox.Text.Length > 0 && categoriesListBox.SelectedIndex >= 0)
+            {
+                exerciseAddButton.Enabled = true;
+            }
+            else
+            {
+                exerciseAddButton.Enabled = false;
             }
         }
     }
