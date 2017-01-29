@@ -71,6 +71,12 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddExerciseToProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddExerciseToProgram.Designer.cs">
+      <DependentUpon>AddExerciseToProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExerciseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddExerciseToProgram.resx">
+      <DependentUpon>AddExerciseToProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExerciseForm.resx">
       <DependentUpon>ExerciseForm.cs</DependentUpon>

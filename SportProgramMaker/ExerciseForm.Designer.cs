@@ -77,6 +77,7 @@
             this.catExerciseListView.Size = new System.Drawing.Size(155, 251);
             this.catExerciseListView.TabIndex = 5;
             this.catExerciseListView.UseCompatibleStateImageBehavior = false;
+            this.catExerciseListView.View = System.Windows.Forms.View.Tile;
             // 
             // ExerciseNamecolumnHeader
             // 

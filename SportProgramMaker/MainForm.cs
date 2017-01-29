@@ -90,5 +90,40 @@ namespace SportProgramMaker
             FormName = this.Text + "     ";
             toolStripStatusLabel1.Text = Resources.MainForm_StartMessage;
         }
+
+        private void createProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // display new program panel
+            //TODO: check if panel not dispplaying now and program creation in process.
+            mainPanel.Show();
+            mainPanel.Enabled = true;
+
+            // remove message from status bar
+            toolStripStatusLabel1.Text = string.Empty;
+
+        }
+
+        private void addExerciseButton_Click(object sender, EventArgs e)
+        {
+
+            var item = catExerciseListView.SelectedItems[0];
+
+            AddExerciseToProgram addExerciseFrom = new AddExerciseToProgram {ExerciseName = item.Text, ParentForm = this};
+            addExerciseFrom.ShowDialog(this);
+
+            catExerciseListView.SelectedItems.Clear();
+        }
+
+        private void catExerciseListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // enable add exercise btn if any item selected
+            addExerciseButton.Enabled = catExerciseListView.SelectedItems.Count > 0;
+        }
+
+        public void AddExerciseToProgram(string exersciseName, int exersciseSets, int exersciseRepeats)
+        {
+            string[] row1 = new string[] { exersciseName, exersciseSets.ToString(), exersciseRepeats.ToString() };
+            programDataGridView.Rows.Add(row1);
+        }
     }
 }
