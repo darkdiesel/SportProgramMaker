@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExerciseForm_Changed" xml:space="preserve">
-    <value>Changed...</value>
-  </data>
-  <data name="ExerciseForm_ExitWithoutSaving" xml:space="preserve">
-    <value>You have unsaved changed. Do you realy want exit withou saving?</value>
-  </data>
-  <data name="ExerciseForm_Warning" xml:space="preserve">
-    <value>Warning</value>
-  </data>
-  <data name="MainForm_StartMessage" xml:space="preserve">
-    <value>Open or Create New Program</value>
-  </data>
 </root>

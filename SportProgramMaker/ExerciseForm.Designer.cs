@@ -36,9 +36,9 @@
             this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.exerciesGroupBox = new System.Windows.Forms.GroupBox();
-            this.exerciseTextBox = new System.Windows.Forms.TextBox();
-            this.categoriesListBox = new System.Windows.Forms.ListBox();
             this.exerciseAddButton = new System.Windows.Forms.Button();
+            this.categoriesListBox = new System.Windows.Forms.ListBox();
+            this.exerciseTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.categoriesGroupBox.SuspendLayout();
@@ -77,6 +77,7 @@
             this.catExerciseListView.Size = new System.Drawing.Size(155, 251);
             this.catExerciseListView.TabIndex = 5;
             this.catExerciseListView.UseCompatibleStateImageBehavior = false;
+            this.catExerciseListView.View = System.Windows.Forms.View.Tile;
             // 
             // ExerciseNamecolumnHeader
             // 
@@ -115,23 +116,6 @@
             this.exerciesGroupBox.TabStop = false;
             this.exerciesGroupBox.Text = "Exercises";
             // 
-            // exerciseTextBox
-            // 
-            this.exerciseTextBox.Location = new System.Drawing.Point(6, 19);
-            this.exerciseTextBox.Name = "exerciseTextBox";
-            this.exerciseTextBox.Size = new System.Drawing.Size(188, 20);
-            this.exerciseTextBox.TabIndex = 4;
-            this.exerciseTextBox.TextChanged += new System.EventHandler(this.exerciseTextBox_TextChanged);
-            // 
-            // categoriesListBox
-            // 
-            this.categoriesListBox.FormattingEnabled = true;
-            this.categoriesListBox.Location = new System.Drawing.Point(6, 45);
-            this.categoriesListBox.Name = "categoriesListBox";
-            this.categoriesListBox.Size = new System.Drawing.Size(188, 82);
-            this.categoriesListBox.TabIndex = 6;
-            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
-            // 
             // exerciseAddButton
             // 
             this.exerciseAddButton.Enabled = false;
@@ -142,6 +126,23 @@
             this.exerciseAddButton.Text = "Add Exercise";
             this.exerciseAddButton.UseVisualStyleBackColor = true;
             this.exerciseAddButton.Click += new System.EventHandler(this.exerciseAddButton_Click);
+            // 
+            // categoriesListBox
+            // 
+            this.categoriesListBox.FormattingEnabled = true;
+            this.categoriesListBox.Location = new System.Drawing.Point(6, 45);
+            this.categoriesListBox.Name = "categoriesListBox";
+            this.categoriesListBox.Size = new System.Drawing.Size(188, 82);
+            this.categoriesListBox.TabIndex = 6;
+            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
+            // 
+            // exerciseTextBox
+            // 
+            this.exerciseTextBox.Location = new System.Drawing.Point(6, 19);
+            this.exerciseTextBox.Name = "exerciseTextBox";
+            this.exerciseTextBox.Size = new System.Drawing.Size(188, 20);
+            this.exerciseTextBox.TabIndex = 4;
+            this.exerciseTextBox.TextChanged += new System.EventHandler(this.exerciseTextBox_TextChanged);
             // 
             // statusStrip1
             // 
@@ -174,7 +175,8 @@
             this.MinimizeBox = false;
             this.Name = "ExerciseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ExerciseForm";
+            this.Text = "Exercises Prefences";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExerciseForm_FormClosing);
             this.Shown += new System.EventHandler(this.ExerciseForm_Shown);
             this.categoriesGroupBox.ResumeLayout(false);
             this.categoriesGroupBox.PerformLayout();

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Collections.Generic;
+using SportProgramMaker.Properties;
 
 namespace SportProgramMaker
 {
@@ -22,6 +23,8 @@ namespace SportProgramMaker
             categoryTextBox.Text = string.Empty;
             categoryAddButton.Enabled = false;
 
+            toolStripStatusLabel1.Text = Resources.ExerciseForm_Changed;
+
             updateCategriesList();
         }
 
@@ -35,6 +38,8 @@ namespace SportProgramMaker
             exerciseAddButton.Enabled = false;
 
             categoriesListBox.ClearSelected();
+
+            toolStripStatusLabel1.Text = Resources.ExerciseForm_Changed;
         }
 
         private void exerciseTextBox_TextChanged(object sender, EventArgs e)
@@ -44,7 +49,7 @@ namespace SportProgramMaker
 
         private void categoryTextBox_TextChanged(object sender, EventArgs e)
         {
-            checkCategoriesToAdd();
+            CheckCategoriesToAdd();
         }
 
         private void updateCategriesList() {
@@ -61,16 +66,9 @@ namespace SportProgramMaker
             checkExerciseToAdd();
         }
 
-        private void checkCategoriesToAdd()
+        private void CheckCategoriesToAdd()
         {
-            if (categoryTextBox.Text.Length > 0)
-            {
-                categoryAddButton.Enabled = true;
-            }
-            else
-            {
-                categoryAddButton.Enabled = false;
-            }
+            categoryAddButton.Enabled = categoryTextBox.Text.Length > 0;
         }
 
         private void checkExerciseToAdd()
@@ -115,44 +113,61 @@ namespace SportProgramMaker
             ser.WriteObject(stream, settings);
 
             stream.Close();
+
+            toolStripStatusLabel1.Text = string.Empty;
         }
 
         private void ExerciseForm_Shown(object sender, EventArgs e)
         {
             try
             {
-                if (File.Exists(MainForm.EXERCISES_FILE_NAME))
-                {
-                    var stream = File.OpenRead(MainForm.EXERCISES_FILE_NAME);
+                if (!File.Exists(MainForm.EXERCISES_FILE_NAME)) return;
+
+                var stream = File.OpenRead(MainForm.EXERCISES_FILE_NAME);
                      
 
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(GroupExerciseSettings[]));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(GroupExerciseSettings[]));
 
-                    GroupExerciseSettings[] groups = (GroupExerciseSettings[])serializer.ReadObject(stream);
+                GroupExerciseSettings[] groups = (GroupExerciseSettings[])serializer.ReadObject(stream);
 
-                    foreach (GroupExerciseSettings group in groups)
-                    {
-                        var group_added = catExerciseListView.Groups.Add(new ListViewGroup(group.name, HorizontalAlignment.Left));
+                foreach (GroupExerciseSettings group in groups)
+                {
+                    var groupAdded = catExerciseListView.Groups.Add(new ListViewGroup(@group.name, HorizontalAlignment.Left));
 
-                        if (group.items != null) {
-                            foreach (var item in group.items) {
-                                var exercise = catExerciseListView.Items.Add(new ListViewItem(item));
-                                catExerciseListView.Items[exercise.Index].Group = catExerciseListView.Groups[group_added];
-                            }
-                        }
+                    if (@group.items == null) continue;
+
+                    foreach (var item in @group.items) {
+                        var exercise = catExerciseListView.Items.Add(new ListViewItem(item));
+                        catExerciseListView.Items[exercise.Index].Group = catExerciseListView.Groups[groupAdded];
                     }
-
-                    updateCategriesList();
-
-                    stream.Close();
                 }
-                
+
+                updateCategriesList();
+
+                stream.Close();
             }
             catch (System.Exception ex)
             {
                 //logger.Error("Cannot deserialize json " + filePath, ex);
                 //throw;
             }
+        }
+
+        private void ExerciseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (toolStripStatusLabel1.Text != string.Empty)
+            {
+                string message = Resources.ExerciseForm_ExitWithoutSaving;
+                string caption = Resources.ExerciseForm_Warning;
+
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                // Displays the MessageBox.
+                DialogResult result = MessageBox.Show(this, message, caption, buttons);
+
+                e.Cancel = (result == DialogResult.No);
+            }
+
         }
     }
 
